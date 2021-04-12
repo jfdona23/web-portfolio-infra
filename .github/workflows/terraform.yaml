@@ -10,6 +10,7 @@ jobs:
       - name: Get Terraform CLI
         uses: hashicorp/setup-terraform@v1.2.1
 
+      - run: ls
       - run: cd terraform
 
       - name: Calculating Plan
