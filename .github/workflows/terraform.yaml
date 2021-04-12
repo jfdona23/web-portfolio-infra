@@ -1,6 +1,9 @@
 name: Terraform Plan
 
-on: [push]
+on:
+  push:
+    paths:
+      - "terraform/**"
 
 jobs:
   Create_Plans:
