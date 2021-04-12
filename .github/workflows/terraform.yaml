@@ -15,7 +15,7 @@ jobs:
 
       - name: Calculating backend plan
         id: plan
-        run: cd terraform/backend && terraform plan
+        run: cd terraform/backend && terraform init && terraform plan
 
       - name: Plan STDOUT
         run: echo ${{ steps.plan.outputs.stdout }}
