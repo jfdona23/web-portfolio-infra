@@ -16,13 +16,8 @@ jobs:
       - name: Get Terraform binary
         uses: hashicorp/setup-terraform@v1.2.1 
 
-      - name: Calculating backend plan
-        id: plan_backend
-        run: cd terraform/backend && terraform init && terraform plan
+      - name: Calculating Base plan
+        run: cd terraform/base && terraform init && terraform plan
 
-      - name: Backend plan - stdout
-        run: echo ${{ steps.plan_backend.outputs.stdout }}
-      - name: Backend plan - stderr
-        run: echo ${{ steps.plan_backend.outputs.stderr }}
-      - name: Backend plan - exit code
-        run: echo ${{ steps.plan_backend.outputs.exitcode }}
+      - name: Calculating Main plan
+        run: cd terraform && terraform init && terraform plan
