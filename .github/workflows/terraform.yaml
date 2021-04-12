@@ -1,0 +1,24 @@
+name: Terraform Plan
+
+on: [push]
+
+jobs:
+  calculate-plan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get Terraform CLI
+        uses: hashicorp/setup-terraform@v1.2.1
+
+      - run: terraform init
+
+      - name: Calculating Plan
+        id: plan
+        run: terraform plan
+
+      - name: Plan STDOUT
+        run: echo ${{ steps.plan.outputs.stdout }}
+      - name: Plan STERR
+        run: echo ${{ steps.plan.outputs.stderr }}
+      - name: Plan exit code
+        run: echo ${{ steps.plan.outputs.exitcode }}
