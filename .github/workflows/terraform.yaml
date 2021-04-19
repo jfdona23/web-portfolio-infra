@@ -19,8 +19,14 @@ jobs:
       - name: Get Terraform binary
         uses: hashicorp/setup-terraform@v1.2.1 
 
+      - name: Validate Base config
+        run: cd terraform/base && terraform init && terraform validate
+
       - name: Calculating Base plan
-        run: cd terraform/base && terraform init && terraform plan
+        run: cd terraform/base && terraform plan
+
+      - name: Validate Main config
+        run: cd terraform && terraform init && terraform validate
 
       - name: Calculating Main plan
-        run: cd terraform && terraform init && terraform plan
+        run: cd terraform && terraform plan
