@@ -4,9 +4,9 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket         = "jfdonadio-tf-state"
-    region         = "us-east-1"
+    bucket = "jfdonadio-tf-state"
+    region = "us-east-1"
+    key    = "web-portfolio/terraform.tfstate"
     # dynamodb_table = "jfdonadio-terraform-locks"
-    key            = "web-portfolio/terraform.tfstate"
   }
 }

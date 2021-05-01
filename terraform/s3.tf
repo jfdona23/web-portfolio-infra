@@ -28,7 +28,26 @@ resource "aws_s3_bucket" "web_s3" {
   }
 
   tags = {
-    "Name"        = var.domain
-    "Description" = "CDN for ${var.domain}"
+    "Name"        = var.bucket_web
+    "Description" = "Storage for ${var.domain}"
+  }
+}
+
+# Logging Bucket
+resource "aws_s3_bucket" "web_logs" {
+  bucket = var.bucket_web_logs
+  acl    = "private"
+
+  lifecycle_rule {
+    enabled = true
+
+    expiration {
+      days = 90
+    }
+  }
+
+  tags = {
+    "Name"        = var.bucket_web_logs
+    "Description" = "Logs for ${var.domain}"
   }
 }
