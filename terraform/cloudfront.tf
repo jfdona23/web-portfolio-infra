@@ -48,8 +48,6 @@ resource "aws_cloudfront_distribution" "cdn" {
   }
 
   logging_config {
-    include_cookies = false
-    bucket          = aws_s3_bucket.web_logs.bucket_domain_name
-    prefix          = var.bucket_web_logs
+    bucket = aws_s3_bucket.web_logs.bucket_domain_name
   }
 }
