@@ -25,6 +25,15 @@ resource "aws_s3_bucket" "terraform_infra" {
   }
 }
 
+resource "aws_s3_bucket_public_access_block" "terraform_infra_public_block" {
+  bucket = aws_s3_bucket.terraform_infra.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
 # resource "aws_dynamodb_table" "dynamodb-table" {
 #   name = "jfdonadio-terraform-locks"
 #   # up to 25 per account is free

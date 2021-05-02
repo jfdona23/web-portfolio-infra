@@ -33,7 +33,17 @@ resource "aws_s3_bucket" "web_s3" {
   }
 }
 
-# Logging Bucket
+# Restrict Public access
+resource "aws_s3_bucket_public_access_block" "web_s3_public_block" {
+  bucket = aws_s3_bucket.web_s3.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
+# Bucket for web access logs
 resource "aws_s3_bucket" "web_logs" {
   bucket = var.bucket_web_logs
   acl    = "private"
@@ -50,4 +60,14 @@ resource "aws_s3_bucket" "web_logs" {
     "Name"        = var.bucket_web_logs
     "Description" = "Logs for ${var.domain}"
   }
+}
+
+# Restrict Public access
+resource "aws_s3_bucket_public_access_block" "web_logs_public_block" {
+  bucket = aws_s3_bucket.web_logs.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
